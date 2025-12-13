@@ -20,7 +20,7 @@ const UserSay = () => {
                     <div className="p-7 bg-white/10 backdrop-blur-sm shadow-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all transform hover:scale-105">
                         <div className="text-white text-center">
                             <div className="text-5xl font-bold mb-2 text-[#804dee]"> <img src="virtual.png" alt="virtual" /></div>
-                            <div className="text-lg opacity-80">"I've been using OTP MART for 6 months and never had any issues. Highly recommend!"
+                            <div className="text-lg opacity-80">&quot;I&apos;ve been using OTP MART for 6 months and never had any issues. Highly recommend!&quot;
 
                                 Michael Chen</div>
                         </div>
@@ -29,7 +29,7 @@ const UserSay = () => {
                     <div className="p-7 bg-white/10 backdrop-blur-sm shadow-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all transform hover:scale-105">
                         <div className="text-white text-center">
                             <div className="text-5xl font-bold mb-2 text-[#804dee]">100K+</div>
-                            <div className="text-lg opacity-80">"OTP arrived in just 3 seconds! This service is absolutely amazing and reliable."
+                            <div className="text-lg opacity-80">&quot;OTP arrived in just 3 seconds! This service is absolutely amazing and reliable.&quot;
 
                                 John Smith</div>
                         </div>
@@ -38,7 +38,7 @@ const UserSay = () => {
                     <div className="p-7 bg-white/10 backdrop-blur-sm shadow-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all transform hover:scale-105">
                         <div className="text-white text-center">
                             <div className="text-5xl font-bold mb-2 text-[#804dee]">99.9%</div>
-                            <div className="text-lg opacity-80">"Refund was instant when OTP didn't come. Great customer service and transparency!"
+                            <div className="text-lg opacity-80">&quot;Refund was instant when OTP didn&apos;t come. Great customer service and transparency!&quot;
 
                                 Emma Johnson</div>
                         </div>
