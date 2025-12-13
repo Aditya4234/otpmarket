@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function User Say() {
+function UserSay() {
     return (
         <div>
             <div className="grid grid-cols-1 gap-4 relative z-20">
@@ -13,6 +13,6 @@ function User Say() {
             </div>
         </div>
     );
-};
+}
 
-export default User Say;
+export default UserSay;

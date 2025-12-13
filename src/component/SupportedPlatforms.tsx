@@ -62,7 +62,7 @@ const SupportedPlatforms = () => {
                             </div>
                             <h3 className="text-2xl font-bold text-gray-800 mb-3">Auto Refund</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                Automatic refund if no OTP within 10 minutes
+                                Automatic refund if no OTP within 10 minutes 
                             </p>
                         </div>
 
