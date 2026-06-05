@@ -6,7 +6,13 @@ let io: SocketIOServer | null = null;
 export function initializeSocket(httpServer: HTTPServer): SocketIOServer {
   io = new SocketIOServer(httpServer, {
     cors: {
-      origin: process.env.CLIENT_URL || 'http://localhost:3000',
+      origin: function (origin, callback) {
+        const allowed = process.env.CLIENT_URL || 'http://localhost:3000';
+        if (!origin || origin === allowed || origin.endsWith('.vercel.app')) {
+          return callback(null, true);
+        }
+        return callback(new Error(`Socket CORS blocked for origin: ${origin}`));
+      },
       methods: ['GET', 'POST'],
       credentials: true,
     },
