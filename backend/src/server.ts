@@ -25,11 +25,11 @@ const httpServer = createServer(app);
 /* =============================
    ALLOWED ORIGINS (FIXED)
 ============================= */
-const allowedOrigins = [
+const allowedOrigins: string[] = [
   "http://localhost:3000",
   "https://otpmarket-six.vercel.app",
-  process.env.CLIENT_URL,
-].filter(Boolean);
+  ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
+];
 
 /* =============================
    SOCKET.IO CONFIG
