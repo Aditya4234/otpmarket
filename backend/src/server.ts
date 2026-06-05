@@ -9,6 +9,7 @@ import rateLimit from 'express-rate-limit';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
+
 import { connectDB } from '@/config/db';
 import { env } from '@/config/env';
 import { errorHandler } from '@/middleware/errorHandler';
@@ -32,7 +33,12 @@ app.set('io', io);
 
 app.use(helmet());
 app.use(compression());
-app.use(cors({ origin: env.CLIENT_URL || 'http://localhost:3000', credentials: true }));
+app.use(
+  cors({
+    origin: env.CLIENT_URL || 'http://localhost:3000',
+    credentials: true,
+  })
+);
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
@@ -42,19 +48,41 @@ app.use(mongoSanitize());
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
-  message: { success: false, message: 'Too many requests, please try again later.' },
+  message: {
+    success: false,
+    message: 'Too many requests, please try again later.',
+  },
 });
+
 app.use('/api', limiter);
 
 app.use(tenantMiddleware);
 app.use(auditLog('api_request', 'api'));
 
-app.use('/api/v1', routes);
-
-app.get('/health', (_req, res) => {
-  res.json({ success: true, message: 'Server is running', timestamp: new Date().toISOString() });
+/* Root Route */
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'OTPMarket Backend is running successfully',
+    version: '1.0.0',
+    environment: env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+  });
 });
 
+/* Health Route */
+app.get('/health', (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Server is healthy',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+/* API Routes */
+app.use('/api/v1', routes);
+
+/* Error Handler */
 app.use(errorHandler);
 
 io.on('connection', (socket) => {
@@ -74,12 +102,19 @@ io.on('connection', (socket) => {
 });
 
 const startServer = async () => {
-  await connectDB();
+  try {
+    await connectDB();
 
-  httpServer.listen(env.PORT || 5000, () => {
-    console.log(`Server running on port ${env.PORT || 5000}`);
-    console.log(`Environment: ${env.NODE_ENV}`);
-  });
+    const PORT = env.PORT || 5000;
+
+    httpServer.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log(`Environment: ${env.NODE_ENV}`);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
 };
 
 startServer();
