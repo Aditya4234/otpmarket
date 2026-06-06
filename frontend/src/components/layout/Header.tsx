@@ -14,12 +14,14 @@ export function Header({ onToggleSidebar }: HeaderProps) {
   const { user } = useAppSelector((state) => state.auth)
   const router = useRouter()
 
+  const dashboardBase = `/dashboard/${user?.role || 'user'}`
+
   const handleNotification = () => {
-    router.push('/notifications')
+    router.push(`${dashboardBase}/notifications`)
   }
 
   const handleProfile = () => {
-    router.push('/profile')
+    router.push(`${dashboardBase}/profile`)
   }
 
   return (

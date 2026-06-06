@@ -45,6 +45,7 @@ export const authApi = api.injectEndpoints({
 
     getMe: builder.query<IApiResponse<{ user: IUser }>, void>({
       query: () => '/auth/me',
+      providesTags: ['User'],
     }),
 
     refreshToken: builder.mutation<IApiResponse<{ accessToken: string }>, { refreshToken: string }>({

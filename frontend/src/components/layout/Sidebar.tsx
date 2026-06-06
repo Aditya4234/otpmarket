@@ -10,6 +10,7 @@ import {
   BarChart3, UserCheck, FolderTree, Building2,
   Smartphone, PhoneCall, DollarSign, Activity,
   AlertTriangle, FileText, Mail, Globe, Settings,
+  UserCircle,
 } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { logout } from '@/redux/slices/authSlice'
@@ -54,6 +55,7 @@ const agentLinks = [
 
 const userLinks = [
   { href: '/dashboard/user', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard/user/account', label: 'Account', icon: UserCircle },
   { href: '/dashboard/user/orders', label: 'Orders', icon: ShoppingBag },
   { href: '/dashboard/user/wallet', label: 'Wallet', icon: Wallet },
   { href: '/dashboard/user/transactions', label: 'Transactions', icon: CreditCard },
